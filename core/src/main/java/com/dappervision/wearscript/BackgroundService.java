@@ -315,6 +315,10 @@ public abstract class BackgroundService extends Service implements AudioRecord.O
         this.activity = a;
     }
 
+    public ScriptActivity getMainActivity() {
+        return this.activity;
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(TAG, "Service onStartCommand");

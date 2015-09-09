@@ -169,7 +169,8 @@ public class CameraManager extends Manager implements Camera.PreviewCallback {
                     }
                     // use a Handler to keep WebView method from being called
                     // on FileObserver thread (bad form, elicits warning)
-                    mHandler = new Handler();
+                    //mHandler = new Handler();
+                    final BackgroundService bs = this.service;
                     FileObserver mFileObserver = new FileObserver(pictureFilePath) {
                         @Override
                         protected void finalize() {
@@ -187,7 +188,8 @@ public class CameraManager extends Manager implements Camera.PreviewCallback {
                                 }
                                 Log.d(TAG, "Detected photo file write. "
                                         + "Now I'll hit the callbacks and quit.");
-                                mHandler.post(
+                                //mHandler.post(
+                                bs.getMainActivity().runOnUiThread(
                                         new Runnable() {
                                             @Override
                                             public void run() {
